@@ -86,7 +86,7 @@ export const calculateRewards = (usedDays: Date[], month: Date): Reward => {
   } else if (uniqueDaysCount >= 20) {
     level = 'medium';
     miles = 1000;
-    description = 'Has utilizado tu tarjeta más de 20 días este mes.';
+    description = 'Has utilizado tu tarjeta más de 20 días durante mes.';
   } else if (uniqueDaysCount >= 10) {
     level = 'basic';
     miles = 500;
