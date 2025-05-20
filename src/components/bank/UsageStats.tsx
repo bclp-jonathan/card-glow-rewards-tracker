@@ -67,7 +67,7 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
         <div className={`p-4 rounded-lg ${reward.miles > 0 ? 'bg-opacity-10' : 'bg-gray-100'} ${getRewardColor()}`}>
           <div className="flex justify-between items-center">
             {reward.level === 'basic' ? (
-              <span className="text-sm w-full text-center">has utilizado tu tarjeta más de 10 días este mes y ganaste <span className="font-bold">500 millas</span></span>
+              <span className="text-sm w-full text-center">Felicitaciones! Has utilizado tu tarjeta más de 10 días este mes y ganaste <span className="font-bold">500 millas</span></span>
             ) : (
               <>
                 <span className="text-sm">{reward.description}</span>
@@ -78,7 +78,7 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
         </div>
         {/* Mensajes de incentivo */}
         <div className="mt-4 space-y-1 text-center">
-          <p className="text-sm text-bank-dark">Si usas la tarjeta más de 20 días ganarás <span className="font-bold">1.000 millas</span></p>
+          <p className="text-sm text-bank-dark">Si usas la tarjeta más de 20 días ganas <span className="font-bold">1.000 millas</span></p>
           <p className="text-sm text-bank-dark">Si usas la tarjeta todos los días, ganas <span className="font-bold">2.000 millas</span></p>
         </div>
       </div>
