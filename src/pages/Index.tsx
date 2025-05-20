@@ -1,5 +1,5 @@
 
-import { CreditCardUsage } from '@/components/bank/CreditCardUsage';
+import CreditCardUsage from '@/components/bank/CreditCardUsage';
 
 const Index = () => {
   return (
