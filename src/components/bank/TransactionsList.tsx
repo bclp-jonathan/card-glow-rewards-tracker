@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CardTransaction } from '../../types/bank';
 import { format } from 'date-fns';
@@ -34,13 +33,13 @@ const TransactionsList = ({ transactions, selectedDate }: TransactionsListProps)
   // Función para obtener color según categoría
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
-      case 'comida': return 'bg-green-500';
-      case 'transporte': return 'bg-blue-500';
-      case 'salud': return 'bg-red-500';
-      case 'entretenimiento': return 'bg-purple-500';
-      case 'compras': return 'bg-yellow-500';
-      case 'servicios': return 'bg-gray-500';
-      default: return 'bg-gray-400';
+      case 'comida': return 'bg-custom-pink';
+      case 'transporte': return 'bg-custom-blueDark';
+      case 'salud': return 'bg-custom-aqua';
+      case 'entretenimiento': return 'bg-custom-lilac';
+      case 'compras': return 'bg-custom-lime';
+      case 'servicios': return 'bg-custom-blue';
+      default: return 'bg-custom-white';
     }
   };
 
