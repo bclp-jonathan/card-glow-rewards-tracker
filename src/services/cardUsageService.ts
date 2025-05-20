@@ -1,4 +1,3 @@
-
 import { CardTransaction, CardUsageData, Reward, RewardLevel } from "../types/bank";
 
 // Mock datos de transacciones para el mes actual
@@ -8,37 +7,42 @@ export const generateMockTransactions = (month: Date): CardTransaction[] => {
   const currentMonth = month.getMonth();
   const currentYear = month.getFullYear();
   
-  // Generar entre 15-20 transacciones aleatorias para el mes
-  const transactionCount = Math.floor(Math.random() * 6) + 15;
-  
   const merchants = ["Mercado", "Restaurante", "Gasolinera", "Farmacia", "Tienda Online", "Cine", "Supermercado"];
   const categories = ["Comida", "Transporte", "Salud", "Entretenimiento", "Compras", "Servicios"];
   
-  // Días usados (sin repetir)
-  const usedDays = new Set<number>();
-  
-  for (let i = 0; i < transactionCount; i++) {
-    // Asegurar días únicos para las transacciones (podrían haber varias transacciones por día)
-    let day;
-    if (usedDays.size < 25) { // Limitar a máximo 25 días en el mes con transacciones
-      do {
-        day = Math.floor(Math.random() * daysInMonth) + 1;
-      } while (Math.random() < 0.3 && usedDays.has(day)); // 30% de probabilidad de reutilizar un día
-      usedDays.add(day);
-    } else {
-      day = Array.from(usedDays)[Math.floor(Math.random() * usedDays.size)];
-    }
-    
-    const transactionDate = new Date(currentYear, currentMonth, day);
-    const transactionAmount = Math.round((Math.random() * 190 + 10) * 100) / 100; // Entre $10 y $200
+  // Primero, asegurar que cada día tenga al menos una transacción
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(currentYear, currentMonth, day);
+    const merchant = merchants[Math.floor(Math.random() * merchants.length)];
+    const category = categories[Math.floor(Math.random() * categories.length)];
+    const amount = Math.round((Math.random() * 190 + 10) * 100) / 100; // Entre $10 y $200
     
     transactions.push({
-      id: `trans-${i}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-      date: transactionDate,
-      amount: transactionAmount,
-      merchant: merchants[Math.floor(Math.random() * merchants.length)],
-      category: categories[Math.floor(Math.random() * categories.length)],
-      description: Math.random() > 0.3 ? `Compra en ${merchants[Math.floor(Math.random() * merchants.length)]}` : undefined
+      id: `trans-${day}-1-${Date.now()}`,
+      date,
+      amount,
+      merchant,
+      category,
+      description: Math.random() > 0.3 ? `Compra en ${merchant}` : undefined
+    });
+  }
+  
+  // Agregar transacciones adicionales aleatorias (entre 0 y 5 por día)
+  const additionalTransactions = Math.floor(Math.random() * 5); // 0-4 transacciones adicionales
+  for (let i = 0; i < additionalTransactions; i++) {
+    const day = Math.floor(Math.random() * daysInMonth) + 1;
+    const date = new Date(currentYear, currentMonth, day);
+    const merchant = merchants[Math.floor(Math.random() * merchants.length)];
+    const category = categories[Math.floor(Math.random() * categories.length)];
+    const amount = Math.round((Math.random() * 190 + 10) * 100) / 100;
+    
+    transactions.push({
+      id: `trans-${day}-2-${i}-${Date.now()}`,
+      date,
+      amount,
+      merchant,
+      category,
+      description: Math.random() > 0.3 ? `Compra en ${merchant}` : undefined
     });
   }
   
@@ -82,7 +86,7 @@ export const calculateRewards = (usedDays: Date[], month: Date): Reward => {
   } else if (uniqueDaysCount >= 20) {
     level = 'medium';
     miles = 1000;
-    description = 'Has utilizado tu tarjeta más de 20 días este mes.';
+    description = 'Has utilizado tu tarjeta más de 20 días durante mes.';
   } else if (uniqueDaysCount >= 10) {
     level = 'basic';
     miles = 500;
