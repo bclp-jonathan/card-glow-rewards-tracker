@@ -60,9 +60,6 @@ const TransactionsList = ({ transactions, selectedDate }: TransactionsListProps)
             <div>
               <p className="font-medium text-sm">{transaction.merchant}</p>
               <div className="flex items-center gap-2 mt-1">
-                <span className="text-xs text-gray-500">
-                  {format(transaction.date, 'HH:mm')}
-                </span>
                 <Badge variant="outline" className={`${getCategoryColor(transaction.category)} text-white text-xs py-0 h-5`}>
                   {transaction.category}
                 </Badge>

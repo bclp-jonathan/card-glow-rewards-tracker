@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -70,6 +69,7 @@ const CreditCardUsage = () => {
         </CardHeader>
         
         <CardContent className="pt-6 space-y-6">
+          <div className="text-center text-xs text-gray-500 mb-2">Última actualización: 22 de mayo</div>
           <Calendar 
             currentMonth={currentMonth}
             usedDays={usageData.usedDays}
