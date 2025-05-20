@@ -70,6 +70,11 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
             <span className="font-bold">{reward.miles} millas</span>
           </div>
         </div>
+        {/* Mensajes de incentivo */}
+        <div className="mt-4 space-y-1 text-center">
+          <p className="text-sm text-bank-dark">Si usas la tarjeta más de 20 días ganarás <span className="font-bold">1.000 millas</span></p>
+          <p className="text-sm text-bank-dark">Si usas la tarjeta todos los días, ganas <span className="font-bold">2.000 millas</span></p>
+        </div>
       </div>
     </div>
   );
