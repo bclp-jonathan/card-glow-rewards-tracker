@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CalendarCheck, CircleCheck, Award } from 'lucide-react';
 import { Reward } from '../../types/bank';
@@ -40,13 +39,6 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
           <CalendarCheck className="h-4 w-4 text-bank-primary" />
           <span className="text-sm font-medium text-bank-dark">
             {usedDaysCount} días de uso
-          </span>
-        </div>
-        
-        <div className="count-badge bg-bank-secondary">
-          <CircleCheck className="h-4 w-4 text-bank-secondary" />
-          <span className="text-sm font-medium text-bank-dark">
-            {totalTransactions} transacciones
           </span>
         </div>
       </div>
