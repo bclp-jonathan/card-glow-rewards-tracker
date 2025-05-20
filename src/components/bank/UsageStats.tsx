@@ -66,8 +66,14 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
         
         <div className={`p-4 rounded-lg ${reward.miles > 0 ? 'bg-opacity-10' : 'bg-gray-100'} ${getRewardColor()}`}>
           <div className="flex justify-between items-center">
-            <span className="text-sm">{reward.description}</span>
-            <span className="font-bold">{reward.miles} millas</span>
+            {reward.level === 'basic' ? (
+              <span className="text-sm w-full text-center">has utilizado tu tarjeta más de 10 días este mes y ganaste <span className="font-bold">500 millas</span></span>
+            ) : (
+              <>
+                <span className="text-sm">{reward.description}</span>
+                <span className="font-bold">{reward.miles} millas</span>
+              </>
+            )}
           </div>
         </div>
         {/* Mensajes de incentivo */}
