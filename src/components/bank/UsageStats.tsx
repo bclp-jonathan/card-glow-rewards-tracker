@@ -34,10 +34,10 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
 
   return (
     <div className="space-y-5 mt-4">
-      <div className="flex gap-6 flex-wrap">
-        <div className="count-badge bg-bank-primary">
-          <CalendarCheck className="h-4 w-4 text-bank-primary" />
-          <span className="text-sm font-medium text-bank-dark">
+      <div className="flex gap-6 flex-wrap justify-center">
+        <div className="count-badge bg-custom-aqua text-white justify-center">
+          <CalendarCheck className="h-4 w-4 text-white" />
+          <span className="text-sm font-medium text-white">
             {usedDaysCount} días de uso
           </span>
         </div>
