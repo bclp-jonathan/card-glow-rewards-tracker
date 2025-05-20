@@ -17,7 +17,7 @@ import { CardUsageData } from '../../types/bank';
 import { Separator } from '@/components/ui/separator';
 
 const CreditCardUsage = () => {
-  const [currentMonth] = useState(new Date());
+  const [currentMonth] = useState(new Date(2025, 4, 1)); // Mayo 2025
   const [usageData, setUsageData] = useState<CardUsageData | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [reward, setReward] = useState(calculateRewards([], currentMonth));

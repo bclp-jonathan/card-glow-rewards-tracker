@@ -5,11 +5,13 @@ import { CardTransaction, CardUsageData, Reward, RewardLevel } from "../types/ba
 export const generateMockTransactions = (month: Date): CardTransaction[] => {
   const transactions: CardTransaction[] = [];
   const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-  const currentMonth = month.getMonth();
-  const currentYear = month.getFullYear();
+  
+  // Usamos el mes y año especificados (mayo 2025)
+  const currentMonth = 4; // mayo es 4 (0-based)
+  const currentYear = 2025;
   
   // Generar entre 15-20 transacciones aleatorias para el mes
-  const transactionCount = Math.floor(Math.random() * 6) + 15;
+  const transactionCount = 18; // Fijamos el número de transacciones en 18
   
   const merchants = ["Mercado", "Restaurante", "Gasolinera", "Farmacia", "Tienda Online", "Cine", "Supermercado"];
   const categories = ["Comida", "Transporte", "Salud", "Entretenimiento", "Compras", "Servicios"];
@@ -20,7 +22,7 @@ export const generateMockTransactions = (month: Date): CardTransaction[] => {
   for (let i = 0; i < transactionCount; i++) {
     // Asegurar días únicos para las transacciones (podrían haber varias transacciones por día)
     let day;
-    if (usedDays.size < 25) { // Limitar a máximo 25 días en el mes con transacciones
+    if (usedDays.size < 18) { // Limitamos a 18 días con transacciones
       do {
         day = Math.floor(Math.random() * daysInMonth) + 1;
       } while (Math.random() < 0.3 && usedDays.has(day)); // 30% de probabilidad de reutilizar un día
@@ -48,7 +50,9 @@ export const generateMockTransactions = (month: Date): CardTransaction[] => {
 
 // Obtener datos de uso de la tarjeta para un mes específico
 export const getCardUsageData = (month: Date = new Date()): CardUsageData => {
-  const transactions = generateMockTransactions(month);
+  // Forzar a mayo 2025
+  const mayoDate = new Date(2025, 4, 1);
+  const transactions = generateMockTransactions(mayoDate);
   
   // Obtener días únicos con uso de tarjeta
   const usedDaysSet = new Set<string>();
@@ -62,7 +66,7 @@ export const getCardUsageData = (month: Date = new Date()): CardUsageData => {
     transactions,
     usedDays,
     totalTransactions: transactions.length,
-    currentMonth: month
+    currentMonth: mayoDate
   };
 };
 

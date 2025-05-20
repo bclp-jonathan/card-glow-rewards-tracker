@@ -2,6 +2,7 @@
 import React from 'react';
 import { CalendarCheck, CircleCheck, Award } from 'lucide-react';
 import { Reward } from '../../types/bank';
+import { Progress } from '@/components/ui/progress';
 
 interface UsageStatsProps {
   usedDaysCount: number;
@@ -51,17 +52,48 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
         </div>
       </div>
 
-      {/* Progreso del mes */}
+      {/* Progreso del mes con hitos */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-gray-500">
+        <div className="flex justify-between text-xs bg-white text-gray-700 px-2 py-1 rounded">
           <span>Progreso del mes</span>
           <span>{progressPercentage}%</span>
         </div>
-        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-bank-secondary transition-all duration-500 ease-out"
-            style={{ width: `${progressPercentage}%` }}
-          ></div>
+        <div className="relative pt-6">
+          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-bank-secondary transition-all duration-500 ease-out"
+              style={{ width: `${progressPercentage}%` }}
+            ></div>
+          </div>
+          
+          {/* Marcadores de hitos */}
+          <div className="absolute top-0 left-0 w-full flex justify-between px-1 text-xs">
+            <div className="flex flex-col items-center">
+              <span className="mb-1">10 días</span>
+              <div className="h-4 w-0.5 bg-gray-300"></div>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="mb-1">20 días</span>
+              <div className="h-4 w-0.5 bg-gray-300"></div>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="mb-1">{daysInMonth} días</span>
+              <div className="h-4 w-0.5 bg-gray-300"></div>
+            </div>
+          </div>
+          
+          {/* Indicadores de recompensa */}
+          <div className="absolute bottom-3 left-0 w-full flex text-[10px]">
+            <div className="w-[32%] text-center">
+              <span className="text-green-600">500 millas</span>
+            </div>
+            <div className="w-[33%] text-center">
+              <span className="text-blue-600">1000 millas</span>
+            </div>
+            <div className="w-[33%] text-center">
+              <span className="text-yellow-600">2000 millas</span>
+            </div>
+          </div>
         </div>
       </div>
 
