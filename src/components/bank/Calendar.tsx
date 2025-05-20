@@ -51,7 +51,7 @@ const Calendar = ({ currentMonth, usedDays, onDayClick }: CalendarProps) => {
             onClick={() => onDayClick?.(day)}
             className={`calendar-day ${
               isDayUsed(day)
-                ? 'calendar-day-used bg-green-100 border-2 border-bank-green hover:bg-green-200 hover:bg-opacity-70 text-bank-dark font-medium'
+                ? 'calendar-day-used hover:bg-bank-secondary hover:bg-opacity-10 text-bank-dark'
                 : 'text-gray-400 hover:bg-gray-100'
             }`}
           >
