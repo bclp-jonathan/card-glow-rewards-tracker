@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CalendarCheck, CircleCheck, Award } from 'lucide-react';
 import { Reward } from '../../types/bank';
@@ -35,18 +34,11 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
 
   return (
     <div className="space-y-5 mt-4">
-      <div className="flex gap-6 flex-wrap">
-        <div className="count-badge bg-bank-primary">
-          <CalendarCheck className="h-4 w-4 text-bank-primary" />
-          <span className="text-sm font-medium text-bank-dark">
+      <div className="flex gap-6 flex-wrap justify-center">
+        <div className="count-badge bg-custom-aqua text-white justify-center">
+          <CalendarCheck className="h-4 w-4 text-white" />
+          <span className="text-sm font-medium text-white">
             {usedDaysCount} días de uso
-          </span>
-        </div>
-        
-        <div className="count-badge bg-bank-secondary">
-          <CircleCheck className="h-4 w-4 text-bank-secondary" />
-          <span className="text-sm font-medium text-bank-dark">
-            {totalTransactions} transacciones
           </span>
         </div>
       </div>
@@ -74,9 +66,20 @@ const UsageStats = ({ usedDaysCount, totalTransactions, daysInMonth, reward }: U
         
         <div className={`p-4 rounded-lg ${reward.miles > 0 ? 'bg-opacity-10' : 'bg-gray-100'} ${getRewardColor()}`}>
           <div className="flex justify-between items-center">
-            <span className="text-sm">{reward.description}</span>
-            <span className="font-bold">{reward.miles} millas</span>
+            {reward.level === 'basic' ? (
+              <span className="text-sm w-full text-center">Felicitaciones! Has utilizado tu tarjeta más de 10 días este mes y ganaste <span className="font-bold">500 millas</span></span>
+            ) : (
+              <>
+                <span className="text-sm">{reward.description}</span>
+                <span className="font-bold">{reward.miles} millas</span>
+              </>
+            )}
           </div>
+        </div>
+        {/* Mensajes de incentivo */}
+        <div className="mt-4 space-y-1 text-center">
+          <p className="text-sm text-bank-dark">Si usas la tarjeta más de 20 días ganas <span className="font-bold">1.000 millas</span></p>
+          <p className="text-sm text-bank-dark">Si usas la tarjeta todos los días, ganas <span className="font-bold">2.000 millas</span></p>
         </div>
       </div>
     </div>

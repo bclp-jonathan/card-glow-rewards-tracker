@@ -3,49 +3,34 @@ import { CardTransaction, CardUsageData, Reward, RewardLevel } from "../types/ba
 // Mock datos de transacciones para el mes actual
 export const generateMockTransactions = (month: Date): CardTransaction[] => {
   const transactions: CardTransaction[] = [];
-  const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
   const currentMonth = month.getMonth();
   const currentYear = month.getFullYear();
-  
+
+  // Días específicos de mayo para tener transacciones
+  const daysWithTransactions = [1, 2, 3, 4, 5, 8, 9, 12, 13, 14, 15, 17, 18, 20, 21, 22, 23];
+
   const merchants = ["Mercado", "Restaurante", "Gasolinera", "Farmacia", "Tienda Online", "Cine", "Supermercado"];
   const categories = ["Comida", "Transporte", "Salud", "Entretenimiento", "Compras", "Servicios"];
-  
-  // Primero, asegurar que cada día tenga al menos una transacción
-  for (let day = 1; day <= daysInMonth; day++) {
-    const date = new Date(currentYear, currentMonth, day);
-    const merchant = merchants[Math.floor(Math.random() * merchants.length)];
-    const category = categories[Math.floor(Math.random() * categories.length)];
-    const amount = Math.round((Math.random() * 190 + 10) * 100) / 100; // Entre $10 y $200
-    
-    transactions.push({
-      id: `trans-${day}-1-${Date.now()}`,
-      date,
-      amount,
-      merchant,
-      category,
-      description: Math.random() > 0.3 ? `Compra en ${merchant}` : undefined
-    });
-  }
-  
-  // Agregar transacciones adicionales aleatorias (entre 0 y 5 por día)
-  const additionalTransactions = Math.floor(Math.random() * 5); // 0-4 transacciones adicionales
-  for (let i = 0; i < additionalTransactions; i++) {
-    const day = Math.floor(Math.random() * daysInMonth) + 1;
-    const date = new Date(currentYear, currentMonth, day);
-    const merchant = merchants[Math.floor(Math.random() * merchants.length)];
-    const category = categories[Math.floor(Math.random() * categories.length)];
-    const amount = Math.round((Math.random() * 190 + 10) * 100) / 100;
-    
-    transactions.push({
-      id: `trans-${day}-2-${i}-${Date.now()}`,
-      date,
-      amount,
-      merchant,
-      category,
-      description: Math.random() > 0.3 ? `Compra en ${merchant}` : undefined
-    });
-  }
-  
+
+  // Solo generar transacciones para los días indicados
+  daysWithTransactions.forEach(day => {
+    // Solo si el mes es mayo (4, porque enero=0)
+    if (currentMonth === 4) {
+      const date = new Date(currentYear, currentMonth, day);
+      const merchant = merchants[Math.floor(Math.random() * merchants.length)];
+      const category = categories[Math.floor(Math.random() * categories.length)];
+      const amount = Math.round((Math.random() * 190 + 10) * 100) / 100; // Entre $10 y $200
+      transactions.push({
+        id: `trans-${day}-1-${Date.now()}`,
+        date,
+        amount,
+        merchant,
+        category,
+        description: Math.random() > 0.3 ? `Compra en ${merchant}` : undefined
+      });
+    }
+  });
+
   // Ordenar transacciones por fecha
   return transactions.sort((a, b) => a.date.getTime() - b.date.getTime());
 };
