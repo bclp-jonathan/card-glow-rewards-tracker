@@ -64,12 +64,12 @@ export default {
 				},
 				// Colores personalizados para la app bancaria
 				bank: {
-					primary: '#0A2540',
-					secondary: '#00B8D9',
-					accent: '#FFAB00',
-					green: '#36B37E',
+					primary: '#211F92',
+					secondary: '#4EF0E2',
+					accent: '#F05A8A',
+					green: '#B3D23F',
 					red: '#FF5630',
-					light: '#F4F5F7',
+					light: '#FFFFFF',
 					dark: '#172B4D',
 				},
 				custom: {
